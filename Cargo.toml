@@ -1,0 +1,28 @@
+[package]
+name = "micro-rdk-28byj48"
+version = "0.1.9-rc2"
+edition = "2021"
+authors = ["Michael Lee <michaellee1019@gmail.com>"]
+resolver = "2"
+rust-version = "1.75"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+
+[dependencies]
+anyhow = "1.0"
+embedded-svc = "0.27"
+embedded-hal = { version = "0.2.7", features = ["unproven"]}
+log = "0.4"
+async-channel = "2"
+futures-lite = "1"
+micro-rdk = {version = "0.1.9-rc2", git = "https://github.com/viamrobotics/micro-rdk.git", features = ["esp32", "binstart","provisioning"], rev = "3aae9aa" }
+
+[build-dependencies]
+cargo_metadata = "0.18"
+embuild = "0.29"
